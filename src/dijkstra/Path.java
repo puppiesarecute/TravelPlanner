@@ -1,17 +1,48 @@
 package dijkstra;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Path
 {
-    Vertex target;
-    double minDistance;
-    List<Vertex> path;
+    private double distance;
+    private Vertex[] path;
 
-    public Path(Vertex target, double minDistance, List<Vertex> path)
+    public Path(Vertex[] path)
     {
-	this.target = target;
-	this.minDistance = minDistance;
 	this.path = path;
+	this.distance = 0;
+    }
+    
+    public double getDistance()
+    {
+	return distance;
+    }
+    
+    public Vertex[] getPath()
+    {
+	return path;
+    }
+    
+    public void setDistance(double distance)
+    {
+	this.distance = distance;
+    }
+    
+    public void setPath(Vertex[] path)
+    {
+	this.path = path;
+    }
+    
+    @Override
+    public String toString()
+    {
+	String result = "";
+	for (int i = 0; i < path.length; i++)
+	{
+	    result += path[i] + "---";
+	}
+	return result;
     }
 }

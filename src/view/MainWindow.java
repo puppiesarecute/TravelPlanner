@@ -36,6 +36,8 @@ public class MainWindow extends JFrame
     JTextField textFieldSalesmanName;
     MyCanvas canvas;
     List<String> selectedCities = new ArrayList<String>();
+    JButton btnCalculate;
+    JLabel totalDistanceAmount;
 
     /**
      * Create the frame.
@@ -80,6 +82,8 @@ public class MainWindow extends JFrame
 	    {
 		listModel.clear();
 		selectedCities.clear();
+		btnCalculate.setEnabled(true);
+		totalDistanceAmount.setText("0.0 km");
 	    }
 	});
 	btnReset.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -102,13 +106,24 @@ public class MainWindow extends JFrame
 	// JList cityList = new JList();
 	scrollPane.setViewportView(cityList);
 
-	JButton btnCalculate = new JButton("Calculate");
+	JLabel totalDistance = new JLabel("Total distance: ");
+	totalDistance.setFont(new Font("Verdana", Font.BOLD, 13));
+	totalDistance.setBounds(10, 770, 169, 32);
+	panel_left.add(totalDistance);
+
+	totalDistanceAmount = new JLabel("0.0 km ");
+	totalDistanceAmount.setFont(new Font("Verdana", Font.BOLD, 13));
+	totalDistanceAmount.setBounds(232, 770, 169, 32);
+	panel_left.add(totalDistanceAmount);
+
+	btnCalculate = new JButton("Calculate");
 	btnCalculate.addActionListener(new ActionListener()
 	{
 	    public void actionPerformed(ActionEvent arg0)
 	    {
 		// call TSP algorithm to get the orders of cities
 		List<String> citiesPlanned = new ArrayList<String>();
+		TSP.totalDistance = 0;
 		citiesPlanned = TSP.greedyFriendlyOutput(selectedCities);
 
 		// draw on canvas
@@ -126,6 +141,9 @@ public class MainWindow extends JFrame
 		{
 		    listModel.addElement(string);
 		}
+		btnCalculate.setEnabled(false);
+
+		totalDistanceAmount.setText(TSP.totalDistance + " km");
 	    }
 	});
 	btnCalculate.setFont(new Font("Verdana", Font.BOLD, 13));

@@ -17,9 +17,8 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 public class XlsReader
 {
 
-//    private final static String FILEPATH = "DistancesInJyllandTest.xls";
-    private final static String FILEPATH = "DistancesInJylland.xls";
-//    private final static String FILEPATH = "ShortestPath.xls";
+//     private final static String FILEPATH = "DistancesInJylland.xls";
+    private final static String FILEPATH = "ShortestPath.xls";
     private static POIFSFileSystem fileSystem;
     private static HSSFWorkbook workBook = null;
     private static HSSFSheet sheet = getWorkBook().getSheetAt(0);
@@ -101,7 +100,7 @@ public class XlsReader
 		    {
 			array[r - 1][c - 1] = Integer.MAX_VALUE;
 		    }
-//		    TEST: System.out.println("row: " + (r-1) + " && col: " + (c-1) + " value: " + array[r-1][c-1] );
+		    // TEST: System.out.println("row: " + (r-1) + " && col: " + (c-1) + " value: " + array[r-1][c-1] );
 		}
 	    }
 	}
@@ -134,7 +133,7 @@ public class XlsReader
 	return workBook;
 
     }
-    
+
     public static void saveFile(List<String> list)
     {
 	try
