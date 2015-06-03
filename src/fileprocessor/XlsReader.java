@@ -17,8 +17,8 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 public class XlsReader
 {
 
-     private final static String FILEPATH = "DistancesInJylland.xls";
-//    private final static String FILEPATH = "ShortestPath.xls";
+//     private final static String FILEPATH = "DistancesInJylland.xls";
+    private final static String FILEPATH = "ShortestPath.xls";
     private static POIFSFileSystem fileSystem;
     private static HSSFWorkbook workBook = null;
     private static HSSFSheet sheet = getWorkBook().getSheetAt(0);

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,14 +14,20 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import view.MyCanvas;
+import fileprocessor.WriteToFile;
 import fileprocessor.XlsReader;
+import graphimplementation.AdjacentListGraph;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.swing.JTextField;
+
+import org.omg.PortableServer.POAPackage.AdapterAlreadyExists;
 
 import dijkstra.TSP;
 
@@ -124,16 +131,16 @@ public class MainWindow extends JFrame
 		// call TSP algorithm to get the orders of cities
 		List<String> citiesPlanned = new ArrayList<String>();
 		TSP.totalDistance = 0;
-		citiesPlanned = TSP.greedyFriendlyOutput(selectedCities);
+		citiesPlanned = TSP.improvedGreedyFriendlyOutput(selectedCities);
 
 		// draw on canvas
 		canvas.update(canvas.getGraphics());
 		canvas.drawConnectorLine(citiesPlanned.get(0), citiesPlanned.get(1), Color.RED);
-		for (int i = 1; i < citiesPlanned.size() - 1; i++)
+		for (int i = 1; i < citiesPlanned.size() - 2; i++)
 		{
 		    canvas.drawConnectorLine(citiesPlanned.get(i), citiesPlanned.get(i + 1), Color.BLACK);
 		}
-		canvas.drawConnectorLine(citiesPlanned.get(citiesPlanned.size() - 1), citiesPlanned.get(0), Color.BLUE);
+		canvas.drawConnectorLine(citiesPlanned.get(citiesPlanned.size() - 2), citiesPlanned.get(citiesPlanned.size() - 1), Color.BLUE);
 
 		// re arrange the list on gui
 		listModel.clear();
@@ -144,6 +151,25 @@ public class MainWindow extends JFrame
 		btnCalculate.setEnabled(false);
 
 		totalDistanceAmount.setText(TSP.totalDistance + " km");
+
+		// log
+		String s1 = "[";
+		for (int i = 0; i < selectedCities.size() - 1; i++)
+		{
+		    s1 += selectedCities.get(i) + "; ";
+		}
+		s1 += selectedCities.get(selectedCities.size() - 1) + "]";
+		
+		String s2 = "[";
+		for (int i = 0; i < citiesPlanned.size() - 1; i++)
+		{
+		    s2 += citiesPlanned.get(i) + "; ";
+		}
+		s2 += citiesPlanned.get(citiesPlanned.size() - 1) + "]";
+		
+		WriteToFile.log("Selected cities: " + s1);
+		WriteToFile.log("Planned cities: " + s2);
+		WriteToFile.log("Total planned distance: " + TSP.totalDistance);
 	    }
 	});
 	btnCalculate.setFont(new Font("Verdana", Font.BOLD, 13));

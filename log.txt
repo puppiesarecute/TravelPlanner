@@ -1,0 +1,46 @@
+Log time: 2015-06-01T22:17:05.488 -- Login sucessfull for user: asger
+
+Log time: 2015-06-01T22:17:10.517 -- Planned cities: [Ebeltoft Ferry Harbour;Aalborg]
+
+Log time: 2015-06-01T22:17:10.519 -- Total planned distance: 586.0
+
+Log time: 2015-06-01T22:20:15.001 -- Login sucessfull for user: admin
+Log time: 2015-06-01T22:20:21.738 -- Selected cities: [Billund Airport; Frederikshavn; Fredericia]
+Log time: 2015-06-01T22:20:21.742 -- Planned cities: [København; Fredericia; Billund Airport; Frederikshavn; Fredericia; København]
+Log time: 2015-06-01T22:20:21.745 -- Total planned distance: 855.0
+Log time: 2015-06-02T09:28:53.100 -- Login sucessfull for user: asger
+Log time: 2015-06-02T09:29:02.635 -- Selected cities: [Billund Airport; Aalborg; Aabenrå]
+Log time: 2015-06-02T09:29:02.638 -- Planned cities: [København; Aabenrå; Billund Airport; Aalborg; København]
+Log time: 2015-06-02T09:29:02.641 -- Total planned distance: 823.0
+Log time: 2015-06-02T09:46:10.758 -- Login sucessfull for user: asger
+Log time: 2015-06-02T09:46:35.931 -- Selected cities: [Billund Airport; Aalborg; Frederikshavn; Esbjerg]
+Log time: 2015-06-02T09:46:35.945 -- Planned cities: [København; Billund Airport; Esbjerg; Frederikshavn; Aalborg; København]
+Log time: 2015-06-02T09:46:35.954 -- Total planned distance: 947.0
+Log time: 2015-06-02T09:48:17.658 -- Selected cities: [Aalborg; Fredericia; Padborg, Border; Kolding]
+Log time: 2015-06-02T09:48:17.662 -- Planned cities: [København; Fredericia; Kolding; Padborg, Border; Aalborg; København]
+Log time: 2015-06-02T09:48:17.667 -- Total planned distance: 871.0
+Log time: 2015-06-02T09:50:42.622 -- Selected cities: [Hanstholm; Hirtshals; Herning; Holstebro; Kolding; Padborg, Border; Randers; Skagen]
+Log time: 2015-06-02T09:50:42.624 -- Planned cities: [København; Randers; Herning; Holstebro; Padborg, Border; Kolding; Hanstholm; Hirtshals; Skagen; København]
+Log time: 2015-06-02T09:50:42.628 -- Total planned distance: 1286.0
+Log time: 2015-06-02T09:53:26.301 -- Login sucessfull for user: asger
+Log time: 2015-06-02T09:53:34.603 -- Selected cities: [Esbjerg; Billund Airport; Fynshav Ferry Harbour]
+Log time: 2015-06-02T09:53:34.606 -- Planned cities: [København; Billund Airport; Esbjerg; Fynshav Ferry Harbour; København]
+Log time: 2015-06-02T09:53:34.608 -- Total planned distance: 801.0
+Log time: 2015-06-02T10:12:39.400 -- Login sucessfull for user: asger
+Log time: 2015-06-02T10:13:43.789 -- Selected cities: [Aabenrå; Esbjerg; Haderslev; Holstebro; Skagen; Århus; Viborg]
+Log time: 2015-06-02T10:13:43.793 -- Planned cities: [København; Skagen; Viborg; Holstebro; Esbjerg; Aabenrå; Haderslev; Århus; København]
+Log time: 2015-06-02T10:13:43.796 -- Total planned distance: 1164.0
+Log time: 2015-06-02T10:21:18.106 -- Selected cities: [Aabenrå; Aalborg; Billund Airport; Ebeltoft Ferry Harbour; Esbjerg; Fredericia; Frederikshavn; Fynshav Ferry Harbour; Grenaa; Haderslev]
+Log time: 2015-06-02T10:21:18.109 -- Planned cities: [København; Ebeltoft Ferry Harbour; Grenaa; Esbjerg; Billund Airport; Fredericia; Haderslev; Aabenrå; Fynshav Ferry Harbour; Aalborg; Frederikshavn; København]
+Log time: 2015-06-02T10:21:18.112 -- Total planned distance: 1255.0
+Log time: 2015-06-02T10:28:06.741 -- Selected cities: [Ebeltoft Ferry Harbour; Esbjerg; Fredericia; Fynshav Ferry Harbour; Aabenrå; Grenaa; Haderslev; Billund Airport]
+Log time: 2015-06-02T10:28:06.744 -- Planned cities: [København; Ebeltoft Ferry Harbour; Grenaa; Esbjerg; Billund Airport; Fredericia; Haderslev; Aabenrå; Fynshav Ferry Harbour; København]
+Log time: 2015-06-02T10:28:06.749 -- Total planned distance: 884.0
+Log time: 2015-06-02T10:40:16.832 -- Login sucessfull for user: admin
+Log time: 2015-06-02T10:40:33.248 -- Selected cities: [Aabenrå; Aalborg; Billund Airport; Hanstholm; Haderslev; Vejle]
+Log time: 2015-06-02T10:40:33.250 -- Planned cities: [København; Ebeltoft Ferry Harbour; Vejle; Billund Airport; Haderslev; Aabenrå; Padborg, Border; Hanstholm; Aalborg; København]
+Log time: 2015-06-02T10:40:33.253 -- Total planned distance: 900.0
+Log time: 2015-06-02T10:42:36.223 -- Login sucessfull for user: admin
+Log time: 2015-06-02T10:42:56.006 -- Selected cities: [Aabenrå; Aalborg; Billund Airport; Esbjerg; Fynshav Ferry Harbour; Herning; Hanstholm]
+Log time: 2015-06-02T10:42:56.008 -- Planned cities: [København; Herning; Billund Airport; Kolding; Haderslev; Fynshav Ferry Harbour; Aabenrå; Esbjerg; Hanstholm; Aalborg; København]
+Log time: 2015-06-02T10:42:56.011 -- Total planned distance: 1114.0

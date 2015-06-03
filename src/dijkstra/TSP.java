@@ -13,21 +13,56 @@ public class TSP
     public static Path bestPath;
     public static Path permutationBestPath;
 
-    public static List<String> greedyFriendlyOutput(List<String> inputCities)
-    {
-	List<String> citiesNames = new ArrayList<String>();
-	List<Vertex> resultVertex = new ArrayList<Vertex>();
-	resultVertex = greedyAlgorithm(inputCities);
-	for (Vertex vertex : resultVertex)
-	{
-	    citiesNames.add(vertex.name);
-	}
-	return citiesNames;
-    }
-
-    public static List<Vertex> greedyAlgorithm(List<String> inputCities)
+    public static List<String> improvedGreedyFriendlyOutput(List<String> inputCities)
     {
 	AdjacentListGraph graph = new AdjacentListGraph();
+	List<String> citiesNames = new ArrayList<String>();
+	List<Vertex> improvedGreedy = improvedGreedyOutPut(inputCities, graph);
+	 citiesNames = getFullDijkstraPath(improvedGreedy, graph);
+//	for (int i = 0; i < improvedGreedy.size(); i++)
+//	{
+//	    citiesNames.add(improvedGreedy.get(i).name);
+//	}
+
+	 System.out.println("Best Path: " + bestPath.getDistance());
+	 System.out.println(bestPath);
+	 System.out.println("----------------------");
+	 System.out.println("----------------------");
+	 System.out.println("----------------------");
+	return citiesNames;
+
+    }
+
+    public static List<Vertex> improvedGreedyOutPut(List<String> inputCities, AdjacentListGraph graph)
+    {
+	List<Vertex> greedyResult = new ArrayList<Vertex>();
+	greedyResult = greedyAlgorithm(inputCities, graph);
+
+	// call do 2 opt
+	List<Vertex> result2Opt = new ArrayList<Vertex>(greedyResult); // use result of greedy to start with 2opt
+
+	// convert to array
+	Vertex[] resultTwoOptArray = new Vertex[result2Opt.size()];
+	for (int i = 0; i < result2Opt.size(); i++)
+	{
+	    resultTwoOptArray[i] = result2Opt.get(i);
+	}
+
+	bestPath = doTwoOpt(resultTwoOptArray, 1, resultTwoOptArray.length - 1, graph);
+	totalDistance = bestPath.getDistance();
+
+	// convert bestPath's path to list
+	List<Vertex> bestPathResult = new ArrayList<Vertex>();
+	for (int i = 0; i < bestPath.getPath().length; i++)
+	{
+	    bestPathResult.add(bestPath.getPath()[i]);
+	}
+
+	return bestPathResult;
+    }
+
+    public static List<Vertex> greedyAlgorithm(List<String> inputCities, AdjacentListGraph graph)
+    {
 	List<Vertex> inputNodes = new ArrayList<Vertex>();
 
 	// convert cities names into Vertex of graph
@@ -44,27 +79,26 @@ public class TSP
 
 	List<Vertex> result = greedyAlgorithm(graph.nodes.get(11), inputNodes, graph);
 
-	// test call do 2 opt
-	List<Vertex> result2Opt = new ArrayList<Vertex>(result); // use result of greedy to start with 2opt
-	result2Opt.add(graph.nodes.get(11));
-	Vertex[] resultTwoOptArray = new Vertex[result2Opt.size()];
-	for (int i = 0; i < result2Opt.size(); i++)
-	{
-	    resultTwoOptArray[i] = result2Opt.get(i);
-	}
-	bestPath = doTwoOpt(resultTwoOptArray, 1, resultTwoOptArray.length - 1, graph);
+	// add return city CPH
+	result.add(graph.nodes.get(11));
 
-	System.out.println("Best Path: " + bestPath.getDistance());
-	System.out.println(bestPath);
-	System.out.println("----------------------");
-	System.out.println("----------------------");
-	System.out.println("----------------------");
+	// convert result list to array
+	Vertex[] array = new Vertex[result.size()];
+	for (int i = 0; i < result.size(); i++)
+	{
+	    array[i] = result.get(i);
+	}
+
+	// calc total dist
+	totalDistance = calculatePathDistance(array, graph);
 
 	// test call permutation
-	Path p = new Path(resultTwoOptArray);
-	p = doPermutation(resultTwoOptArray, 1, resultTwoOptArray.length - 2, graph);
-	System.out.println("Permutation best length: " + p.getDistance());
-	System.out.println("Permutation best path: " + p);
+	// TODO does not work - needs fixing
+	// Path p = new Path(resultTwoOptArray);
+	// p = doPermutation(resultTwoOptArray, 1, resultTwoOptArray.length - 2, graph);
+	// System.out.println("Permutation best length: " + p.getDistance());
+	// System.out.println("Permutation best path: " + p);
+
 	return result;
     }
 
@@ -82,20 +116,20 @@ public class TSP
 	{
 	    output.add(inputCities.get(0));
 
-	    // get distance to the last city before going back to CPH
-	    double distToLastCity = inputCities.get(0).minDistance;
-
-	    // get distance from that last city to CPH
-	    double distToCPH = getDistanceBetweenVertex(inputCities.get(0), graph.nodes.get(11), graph);
-
-	    totalDistance = totalDistance + distToLastCity + distToCPH;
+	    // // get distance to the last city before going back to CPH
+	    // double distToLastCity = inputCities.get(0).minDistance;
+	    //
+	    // // get distance from that last city to CPH
+	    // double distToCPH = getDistanceBetweenVertex(inputCities.get(0), graph.nodes.get(11), graph);
+	    //
+	    // totalDistance = totalDistance + distToLastCity + distToCPH;
 	}
 	else if (inputCities.size() > 1)
 	{
 	    Vertex nextCity = getClosestNode(inputCities);
 	    inputCities.remove(nextCity);
 	    origin = nextCity;
-	    totalDistance += nextCity.minDistance;
+	    // totalDistance += nextCity.minDistance;
 	    output.addAll(greedyAlgorithm(origin, inputCities, graph));
 	}
 
@@ -176,14 +210,14 @@ public class TSP
 		swap(input, i, j);
 		Path newPath = new Path(input);
 		double newDistance = calculatePathDistance(input, graph);
-		System.out.println("New dist: " + newDistance);
+		 System.out.println("New dist: " + newDistance);
 		if (newDistance < totalDistance)
 		{
 		    totalDistance = newDistance;
 		    result = newPath;
 		    result.setDistance(newDistance);
-		    System.out.println("Better dist: " + newDistance);
-		    System.out.println("Better path: " + result);
+		     System.out.println("Better dist: " + newDistance);
+		     System.out.println("Better path: " + result);
 		}
 		else
 		{
@@ -210,8 +244,8 @@ public class TSP
 		{
 		    permutationBestPath = new Path(input);
 		    permutationBestPath.setDistance(newDistance);
-		    System.out.println("Permutation best Path length: " + newDistance);
-		    System.out.println("Permutation best Path: " + bestPath);
+		    // System.out.println("Permutation best Path length: " + newDistance);
+		    // System.out.println("Permutation best Path: " + bestPath);
 		}
 	    }
 	    else
@@ -227,14 +261,39 @@ public class TSP
 	return permutationBestPath;
     }
 
+    public static List<String> getFullDijkstraPath(List<Vertex> input, AdjacentListGraph graph)
+    {
+	List<String> result = new ArrayList<String>();
+
+	for (int j = 0; j < input.size() - 1; j++)
+	{
+	    // clean up input
+	    for (int i = 0; i < input.size(); i++)
+	    {
+		input.get(i).reset();
+	    }
+
+	    Vertex source = input.get(j);
+	    Dijkstra.computePaths(source);
+	    List<Vertex> path = Dijkstra.getShortestPathTo(input.get(j + 1));
+	    result.add(source.name);
+	    for (int i = 1; i < path.size()-1; i++)
+	    {
+		result.add(path.get(i).name);
+	    }
+	}
+	result.add(input.get(input.size()-1).name);
+	return result;
+    }
+
     private static void swap(Vertex[] input, int i, int j)
     {
 	Path before = new Path(input);
-	System.out.println("Before swap: " + before);
+	 System.out.println("Before swap: " + before);
 	Vertex temp = input[i];
 	input[i] = input[j];
 	input[j] = temp;
 	Path after = new Path(input);
-	System.out.println("After swap: " + after);
+	 System.out.println("After swap: " + after);
     }
 }

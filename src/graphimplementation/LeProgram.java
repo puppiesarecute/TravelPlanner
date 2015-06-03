@@ -15,7 +15,7 @@ public class LeProgram
 //	 for (int i = 0; i < 26; i++)
 //	 {
 //	 AdjacentListGraph alg = new AdjacentListGraph();
-//	 Vertex source = alg.nodes.get(14);
+//	 Vertex source = alg.nodes.get(i);
 //	
 //	 Dijkstra.computePaths(source);
 //	 System.out.println("Source: " + source);
@@ -36,22 +36,22 @@ public class LeProgram
 //	 System.out.println("Shortest path: " + path);
 
 	// Launch main window
-	EventQueue.invokeLater(new Runnable()
-	{
-	    public void run()
-	    {
-		try
-		{
-		    MainWindow frame = new MainWindow();
-		    frame.setVisible(true);
-		    frame.setLocationRelativeTo(null);
-		}
-		catch (Exception e)
-		{
-		    e.printStackTrace();
-		}
-	    }
-	});
+//	EventQueue.invokeLater(new Runnable()
+//	{
+//	    public void run()
+//	    {
+//		try
+//		{
+//		    MainWindow frame = new MainWindow();
+//		    frame.setVisible(true);
+//		    frame.setLocationRelativeTo(null);
+//		}
+//		catch (Exception e)
+//		{
+//		    e.printStackTrace();
+//		}
+//	    }
+//	});
     }
 
 }
